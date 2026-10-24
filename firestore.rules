@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function pdoc(day) {
+      return /databases/$(database)/documents/days/$(day)/players/$(request.auth.uid);
+    }
+    match /days/{day} {
+      allow read: if true;
+      // Only a batch that also creates this player's doc may bump the counters.
+      allow create: if request.auth != null && !exists(pdoc(day)) && existsAfter(pdoc(day))
+        && request.resource.data.keys().hasOnly(['count','total'])
+        && request.resource.data.count == 1
+        && request.resource.data.total == getAfter(pdoc(day)).data.guesses;
+      allow update: if request.auth != null && !exists(pdoc(day)) && existsAfter(pdoc(day))
+        && request.resource.data.keys().hasOnly(['count','total'])
+        && request.resource.data.count == resource.data.count + 1
+        && request.resource.data.total == resource.data.total + getAfter(pdoc(day)).data.guesses;
+      match /players/{uid} {
+        allow read: if request.auth != null && request.auth.uid == uid;
+        allow create: if request.auth != null && request.auth.uid == uid
+          && request.resource.data.keys().hasOnly(['guesses'])
+          && request.resource.data.guesses is int
+          && request.resource.data.guesses >= 1 && request.resource.data.guesses <= 100;
+      }
+    }
+  }
+}

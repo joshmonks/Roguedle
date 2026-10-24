@@ -1,0 +1,492 @@
+[
+ {
+  "n": "Hades",
+  "y": 2020,
+  "s": "Action",
+  "c": "Real-time",
+  "p": "Isometric",
+  "o": "No",
+  "d": "Supergiant Games",
+  "$": 24.99
+ },
+ {
+  "n": "Hades II",
+  "y": 2024,
+  "s": "Action",
+  "c": "Real-time",
+  "p": "Isometric",
+  "o": "No",
+  "d": "Supergiant Games",
+  "$": 29.99
+ },
+ {
+  "n": "Slay the Spire",
+  "y": 2019,
+  "s": "Deckbuilder",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "Mega Crit",
+  "$": 24.99
+ },
+ {
+  "n": "Dead Cells",
+  "y": 2018,
+  "s": "Platformer",
+  "c": "Real-time",
+  "p": "2D",
+  "o": "No",
+  "d": "Motion Twin",
+  "$": 24.99
+ },
+ {
+  "n": "The Binding of Isaac: Rebirth",
+  "y": 2014,
+  "s": "Shooter",
+  "c": "Real-time",
+  "p": "Top-down",
+  "o": "Yes",
+  "d": "Nicalis",
+  "$": 14.99
+ },
+ {
+  "n": "Enter the Gungeon",
+  "y": 2016,
+  "s": "Shooter",
+  "c": "Real-time",
+  "p": "Top-down",
+  "o": "Yes",
+  "d": "Dodge Roll",
+  "$": 14.99
+ },
+ {
+  "n": "Risk of Rain 2",
+  "y": 2020,
+  "s": "Shooter",
+  "c": "Real-time",
+  "p": "3D",
+  "o": "Yes",
+  "d": "Hopoo Games",
+  "$": 24.99
+ },
+ {
+  "n": "Vampire Survivors",
+  "y": 2022,
+  "s": "Survivors",
+  "c": "Real-time",
+  "p": "Top-down",
+  "o": "Yes",
+  "d": "poncle",
+  "$": 4.99
+ },
+ {
+  "n": "Darkest Dungeon",
+  "y": 2016,
+  "s": "Tactical",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "Red Hook Studios",
+  "$": 24.99
+ },
+ {
+  "n": "Darkest Dungeon II",
+  "y": 2023,
+  "s": "Tactical",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "Red Hook Studios",
+  "$": 39.99
+ },
+ {
+  "n": "FTL: Faster Than Light",
+  "y": 2012,
+  "s": "Tactical",
+  "c": "Real-time",
+  "p": "2D",
+  "o": "No",
+  "d": "Subset Games",
+  "$": 9.99
+ },
+ {
+  "n": "Into the Breach",
+  "y": 2018,
+  "s": "Tactical",
+  "c": "Turn-based",
+  "p": "Isometric",
+  "o": "No",
+  "d": "Subset Games",
+  "$": 14.99
+ },
+ {
+  "n": "Spelunky 2",
+  "y": 2020,
+  "s": "Platformer",
+  "c": "Real-time",
+  "p": "2D",
+  "o": "Yes",
+  "d": "Mossmouth",
+  "$": 14.99
+ },
+ {
+  "n": "Noita",
+  "y": 2020,
+  "s": "Action",
+  "c": "Real-time",
+  "p": "2D",
+  "o": "No",
+  "d": "Nolla Games",
+  "$": 24.99
+ },
+ {
+  "n": "Balatro",
+  "y": 2024,
+  "s": "Deckbuilder",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "LocalThunk",
+  "$": 14.99
+ },
+ {
+  "n": "Monster Train",
+  "y": 2020,
+  "s": "Deckbuilder",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "Shiny Shoe",
+  "$": 24.99
+ },
+ {
+  "n": "Griftlands",
+  "y": 2021,
+  "s": "Deckbuilder",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "Klei Entertainment",
+  "$": 24.99
+ },
+ {
+  "n": "Cult of the Lamb",
+  "y": 2022,
+  "s": "Action",
+  "c": "Real-time",
+  "p": "Top-down",
+  "o": "No",
+  "d": "Massive Monster",
+  "$": 24.99
+ },
+ {
+  "n": "Rogue Legacy",
+  "y": 2013,
+  "s": "Platformer",
+  "c": "Real-time",
+  "p": "2D",
+  "o": "No",
+  "d": "Cellar Door Games",
+  "$": 14.99
+ },
+ {
+  "n": "Rogue Legacy 2",
+  "y": 2022,
+  "s": "Platformer",
+  "c": "Real-time",
+  "p": "2D",
+  "o": "No",
+  "d": "Cellar Door Games",
+  "$": 24.99
+ },
+ {
+  "n": "Gunfire Reborn",
+  "y": 2020,
+  "s": "Shooter",
+  "c": "Real-time",
+  "p": "3D",
+  "o": "Yes",
+  "d": "Duoyi Network",
+  "$": 19.99
+ },
+ {
+  "n": "Returnal",
+  "y": 2023,
+  "s": "Shooter",
+  "c": "Real-time",
+  "p": "3D",
+  "o": "No",
+  "d": "Housemarque",
+  "$": 59.99
+ },
+ {
+  "n": "Brotato",
+  "y": 2023,
+  "s": "Survivors",
+  "c": "Real-time",
+  "p": "Top-down",
+  "o": "Yes",
+  "d": "Blobfish",
+  "$": 4.99
+ },
+ {
+  "n": "Caves of Qud",
+  "y": 2024,
+  "s": "RPG",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "Freehold Games",
+  "$": 29.99
+ },
+ {
+  "n": "Cogmind",
+  "y": 2017,
+  "s": "RPG",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "Grid Sage Games",
+  "$": 24.99
+ },
+ {
+  "n": "Tales of Maj’Eyal",
+  "y": 2012,
+  "s": "RPG",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "Netcoredude",
+  "$": 19.99
+ },
+ {
+  "n": "Wizard of Legend",
+  "y": 2018,
+  "s": "Action",
+  "c": "Real-time",
+  "p": "Top-down",
+  "o": "Yes",
+  "d": "Contingent99",
+  "$": 14.99
+ },
+ {
+  "n": "Children of Morta",
+  "y": 2019,
+  "s": "Action",
+  "c": "Real-time",
+  "p": "Top-down",
+  "o": "Yes",
+  "d": "Dead Mage",
+  "$": 24.99
+ },
+ {
+  "n": "Neon Abyss",
+  "y": 2020,
+  "s": "Platformer",
+  "c": "Real-time",
+  "p": "2D",
+  "o": "No",
+  "d": "Veewo Games",
+  "$": 19.99
+ },
+ {
+  "n": "Loop Hero",
+  "y": 2021,
+  "s": "Strategy",
+  "c": "Real-time",
+  "p": "2D",
+  "o": "No",
+  "d": "Four Quarters",
+  "$": 14.99
+ },
+ {
+  "n": "Crypt of the NecroDancer",
+  "y": 2015,
+  "s": "Rhythm",
+  "c": "Real-time",
+  "p": "2D",
+  "o": "Yes",
+  "d": "Brace Yourself Games",
+  "$": 14.99
+ },
+ {
+  "n": "Streets of Rogue",
+  "y": 2019,
+  "s": "Action",
+  "c": "Real-time",
+  "p": "Top-down",
+  "o": "Yes",
+  "d": "Matt Dabrowski",
+  "$": 19.99
+ },
+ {
+  "n": "Void Bastards",
+  "y": 2019,
+  "s": "Shooter",
+  "c": "Real-time",
+  "p": "3D",
+  "o": "No",
+  "d": "Blue Manchu",
+  "$": 24.99
+ },
+ {
+  "n": "Dicey Dungeons",
+  "y": 2019,
+  "s": "Dice",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "Terry Cavanagh",
+  "$": 14.99
+ },
+ {
+  "n": "Peglin",
+  "y": 2022,
+  "s": "Pachinko",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "Red Nexus Games",
+  "$": 14.99
+ },
+ {
+  "n": "Wildfrost",
+  "y": 2023,
+  "s": "Deckbuilder",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "Deadpan Games",
+  "$": 24.99
+ },
+ {
+  "n": "Inscryption",
+  "y": 2021,
+  "s": "Deckbuilder",
+  "c": "Turn-based",
+  "p": "3D",
+  "o": "No",
+  "d": "Daniel Mullins Games",
+  "$": 19.99
+ },
+ {
+  "n": "Skul: The Hero Slayer",
+  "y": 2021,
+  "s": "Platformer",
+  "c": "Real-time",
+  "p": "2D",
+  "o": "Yes",
+  "d": "SouthPAW Games",
+  "$": 14.99
+ },
+ {
+  "n": "Have a Nice Death",
+  "y": 2023,
+  "s": "Platformer",
+  "c": "Real-time",
+  "p": "2D",
+  "o": "No",
+  "d": "Magic Design Studios",
+  "$": 24.99
+ },
+ {
+  "n": "Ravenswatch",
+  "y": 2022,
+  "s": "Action",
+  "c": "Real-time",
+  "p": "Isometric",
+  "o": "Yes",
+  "d": "Passtech Games",
+  "$": 24.99
+ },
+ {
+  "n": "Backpack Hero",
+  "y": 2023,
+  "s": "Inventory",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "Jaspel",
+  "$": 14.99
+ },
+ {
+  "n": "20 Minutes Till Dawn",
+  "y": 2022,
+  "s": "Survivors",
+  "c": "Real-time",
+  "p": "Top-down",
+  "o": "No",
+  "d": "flanne",
+  "$": 4.99
+ },
+ {
+  "n": "Halls of Torment",
+  "y": 2023,
+  "s": "Survivors",
+  "c": "Real-time",
+  "p": "Top-down",
+  "o": "No",
+  "d": "Chasing Carrots",
+  "$": 4.99
+ },
+ {
+  "n": "Roboquest",
+  "y": 2023,
+  "s": "Shooter",
+  "c": "Real-time",
+  "p": "3D",
+  "o": "Yes",
+  "d": "RyseUp Studios",
+  "$": 19.99
+ },
+ {
+  "n": "Synthetik",
+  "y": 2019,
+  "s": "Shooter",
+  "c": "Real-time",
+  "p": "Top-down",
+  "o": "Yes",
+  "d": "Flow Fire Games",
+  "$": 14.99
+ },
+ {
+  "n": "Nuclear Throne",
+  "y": 2015,
+  "s": "Shooter",
+  "c": "Real-time",
+  "p": "Top-down",
+  "o": "Yes",
+  "d": "Vlambeer",
+  "$": 12.99
+ },
+ {
+  "n": "Tangledeep",
+  "y": 2018,
+  "s": "RPG",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "Impact Gameworks",
+  "$": 14.99
+ },
+ {
+  "n": "Atomicrops",
+  "y": 2020,
+  "s": "Farming",
+  "c": "Real-time",
+  "p": "Top-down",
+  "o": "Yes",
+  "d": "Bird Bath Games",
+  "$": 19.99
+ },
+ {
+  "n": "Rogue Lords",
+  "y": 2022,
+  "s": "Tactical",
+  "c": "Turn-based",
+  "p": "2D",
+  "o": "No",
+  "d": "Cyanide Studio",
+  "$": 24.99
+ }
+]

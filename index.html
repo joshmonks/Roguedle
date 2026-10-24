@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Roguedle</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4f1ea;--card:#fff;--ink:#1d1b19;--mute:#76706a;--line:#ddd6cb;--ok:#2e9e57;--near:#d79a1d;--no:#c8453d;--acc:#7b3fe4;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15131a;--card:#201d28;--ink:#f1ede8;--mute:#9a93a3;--line:#37323f;--ok:#2f8f55;--near:#b98414;--no:#b23d36;--acc:#a37cf5;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15131a;--card:#201d28;--ink:#f1ede8;--mute:#9a93a3;--line:#37323f;--ok:#2f8f55;--near:#b98414;--no:#b23d36;--acc:#a37cf5;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100%}
+main{max-width:860px;margin:0 auto;padding:20px 14px 40px}
+h1{margin:0;font-size:2rem;letter-spacing:.02em;text-align:center}
+h1 span{color:var(--acc)}
+.sub{text-align:center;color:var(--mute);margin:4px 0 18px;font-size:.9rem}
+.bar{display:flex;justify-content:space-between;align-items:center;margin:0 0 10px;color:var(--mute);font-size:.9rem}
+.box{position:relative}
+input{width:100%;padding:13px 14px;font-size:1rem;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+input:focus{outline:none;border-color:var(--acc)}
+#list{position:absolute;left:0;right:0;top:100%;z-index:5;background:var(--card);border:1px solid var(--line);border-radius:10px;margin-top:4px;max-height:280px;overflow:auto;display:none}
+#list div{padding:10px 14px;cursor:pointer}
+#list div:hover,#list div.on{background:var(--bg)}
+.wrap{overflow-x:auto;margin-top:16px}
+table{border-collapse:separate;border-spacing:4px;width:100%;min-width:720px}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);font-weight:600;padding:2px}
+td{text-align:center;padding:10px 4px;border-radius:8px;color:#fff;font-size:.85rem;font-weight:600;background:var(--no);animation:pop .35s both}
+td.g{background:var(--card);color:var(--ink);border:1px solid var(--line);text-align:left;padding-left:10px}
+td.ok{background:var(--ok)}td.near{background:var(--near)}
+@keyframes pop{from{transform:scale(.85);opacity:0}to{transform:none;opacity:1}}
+.win{background:var(--card);border:2px solid var(--ok);border-radius:14px;padding:20px;margin-top:18px;text-align:center}
+.win h2{margin:0 0 4px}
+.stats{display:flex;gap:12px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.stat{background:var(--bg);border-radius:10px;padding:12px 20px;min-width:140px}
+.stat b{display:block;font-size:1.8rem;color:var(--acc)}
+.stat small{color:var(--mute)}
+.note{color:var(--mute);font-size:.8rem;margin-top:12px}
+.legend{display:flex;gap:12px;justify-content:center;font-size:.75rem;color:var(--mute);margin-top:10px;flex-wrap:wrap}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+</style>
+</head>
+<body>
+<main>
+<h1>Rogue<span>dle</span></h1>
+<p class="sub">Guess today’s roguelike. A new game every day.</p>
+<div class="bar"><span id="today"></span><span id="count">Guesses: 0</span></div>
+<div class="box"><input id="in" placeholder="Type a game name…" autocomplete="off"><div id="list"></div></div>
+<div class="legend"><span><i style="background:var(--ok)"></i>Match</span><span><i style="background:var(--near)"></i>Close (within 2 years or $5)</span><span><i style="background:var(--no)"></i>No match</span></div>
+<div id="win"></div>
+<div class="wrap"><table><thead><tr><th style="text-align:left">Game</th><th>Year</th><th>Price</th><th>Genre</th><th>Combat</th><th>View</th><th>Co-op</th><th>Developer</th></tr></thead><tbody id="rows"></tbody></table></div>
+</main>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,signInAnonymously} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,doc,getDoc,writeBatch,increment} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {firebaseConfig} from "./firebase-config.js";
+
+const $=i=>document.getElementById(i);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const day=new Date().toISOString().slice(0,10);
+let G=[],target,guesses=[],won=false,sel=0,matches=[];
+$("today").textContent="Puzzle for "+day+" (UTC)";
+const ls=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}};
+const money=v=>v===0?"Free":"$"+v.toFixed(2);
+const cell=(cls,t)=>`<td class="${cls}">${esc(t)}</td>`;
+
+function addRow(g){
+  const yc=g.y===target.y?"ok":Math.abs(g.y-target.y)<=2?"near":"",
+        ar=g.y<target.y?" ↑":g.y>target.y?" ↓":"";
+  const pc=g.$===target.$?"ok":Math.abs(g.$-target.$)<=5?"near":"",
+        pa=g.$<target.$?" ↑":g.$>target.$?" ↓":"";
+  const r=document.createElement("tr");
+  r.innerHTML=`<td class="g">${esc(g.n)}</td>`+cell(yc,g.y+ar)+cell(pc,money(g.$)+pa)+
+    ["s","c","p","o","d"].map(k=>cell(g[k]===target[k]?"ok":"",g[k])).join("");
+  $("rows").prepend(r);
+}
+function guess(name,restore){
+  const g=G.find(x=>x.n===name);
+  if(!g||won||guesses.includes(name))return;
+  guesses.push(name);addRow(g);
+  $("count").textContent="Guesses: "+guesses.length;
+  if(!restore)ls("rd:"+day,JSON.stringify(guesses));
+  if(g===target){won=true;$("in").disabled=true;finish()}
+}
+async function finish(){
+  const n=guesses.length;
+  $("win").innerHTML=`<div class="win"><h2>🎉 It’s ${esc(target.n)}!</h2><div>You got it in <b>${n}</b> guess${n>1?"es":""}.</div><div class="stats" id="st"><div class="stat"><b>…</b><small>players today</small></div><div class="stat"><b>…</b><small>avg guesses</small></div></div><div class="note">Come back tomorrow for a new game.</div></div>`;
+  const st=$("st");
+  try{
+    if(!firebaseConfig.apiKey||firebaseConfig.apiKey.startsWith("YOUR"))throw new Error("Firebase not configured");
+    const db=getFirestore(initializeApp(firebaseConfig));
+    const {user}=await signInAnonymously(getAuth());
+    const dayRef=doc(db,"days",day),pRef=doc(db,"days",day,"players",user.uid);
+    if(!(await getDoc(pRef)).exists()){          // count each player once
+      const b=writeBatch(db);
+      b.set(pRef,{guesses:n});
+      b.set(dayRef,{count:increment(1),total:increment(n)},{merge:true});
+      await b.commit();
+    }
+    const d=(await getDoc(dayRef)).data();
+    st.innerHTML=`<div class="stat"><b>${d.count}</b><small>player${d.count===1?"":"s"} solved today</small></div><div class="stat"><b>${(d.total/d.count).toFixed(1)}</b><small>avg guesses</small></div>`;
+  }catch(e){
+    console.error(e);
+    st.innerHTML='<div class="note">Global stats are unavailable right now.</div>';
+  }
+}
+function show(){
+  const q=$("in").value.trim().toLowerCase(),L=$("list");
+  matches=q?G.filter(x=>!guesses.includes(x.n)&&x.n.toLowerCase().includes(q)).slice(0,8):[];
+  sel=0;
+  L.innerHTML=matches.map((m,i)=>`<div data-n="${esc(m.n)}"${i?"":' class="on"'}>${esc(m.n)}</div>`).join("");
+  L.style.display=matches.length?"block":"none";
+}
+const pick=n=>{$("in").value="";$("list").style.display="none";guess(n)};
+$("in").addEventListener("input",show);
+$("in").addEventListener("keydown",e=>{
+  if(e.key==="ArrowDown"||e.key==="ArrowUp"){
+    sel=(sel+(e.key==="ArrowDown"?1:-1)+matches.length)%(matches.length||1);
+    [...$("list").children].forEach((c,i)=>c.className=i===sel?"on":"");e.preventDefault();
+  }else if(e.key==="Enter"&&matches[sel])pick(matches[sel].n);
+});
+$("list").addEventListener("mousedown",e=>{const n=e.target.dataset.n;if(n){e.preventDefault();pick(n)}});
+document.addEventListener("click",e=>{if(e.target!==$("in"))$("list").style.display="none"});
+
+(async()=>{
+  try{G=await (await fetch("games.json",{cache:"no-cache"})).json()}
+  catch(e){$("today").textContent="Could not load games.json";return}
+  G.sort((a,b)=>a.n.localeCompare(b.n));
+  let h=0;for(const ch of day)h=(h*31+ch.charCodeAt(0)+7)>>>0;
+  target=G[h%G.length];
+  try{JSON.parse(ls("rd:"+day)||"[]").forEach(n=>guess(n,true))}catch(e){}
+})();
+</script>
+</body>
+</html>
